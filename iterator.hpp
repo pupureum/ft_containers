@@ -252,6 +252,8 @@ namespace ft
 			const vector_iterator<Iter1>& lhs, const vector_iterator<Iter2>& rhs)
 	{ return lhs.base() - rhs.base(); }
 
+//한쪽은 const형 iter 한쪽은 그냥 iter알때 를 위해서 iter1, iter2 나눔! 
+//+는 숫자와 iter 더할 수 있지만 -는 iter끼리만 가능하므로!
 }
 
 #endif
