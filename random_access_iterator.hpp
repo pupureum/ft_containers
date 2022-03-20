@@ -23,6 +23,7 @@ namespace ft
 		random_access_iterator() : _i(NULL) {}
 		//?
 		explicit random_access_iterator(pointer ptr = ft_nullptr) : _i(ptr) {}
+	
 		random_access_iterator(const random_access_iterator<T>& vec_rhs) : _i(vec_rhs._i) {}
 	
 		/* Assignment Operator */
@@ -41,15 +42,25 @@ namespace ft
 
 		/* Member function Operators */
 		reference operator*() const { return (*_i); }
+	
 		pointer operator->() const { return &(this->operator*()); }
+	
 		random_access_iterator operator+(difference_type n) const { return (random_access_iterator(this->_i + n); }
+	
 		random_access_iterator& operator++(void) { ++_i; return (*this); }
+	
 		random_access_iterator operator++(int) { random_access_iterator temp(*this); ++_i; return (temp); }
+	
 		random_access_iterator operator-(difference_type n) { return (random_access_iterator(this->_i - n); }
+	
 		random_access_iterator& operator--(void) { --_i; return (*this); }
+	
 		random_access_iterator operator--(int) { random_access_iterator temp(*this); --_i; return (temp); }
+	
 		random_access_iterator& operator+=(difference_type n) { this->_i += n; return (*this); }
+	
 		random_access_iterator& operator-=(difference_type n) { this->_i -= n; return (*this); }
+	
 		reference operator[](difference_type n) const { return (_i[n]); }
 	};
 

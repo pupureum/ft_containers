@@ -113,17 +113,26 @@ namespace ft
 
 			/* Member function Operators 정방향 반복자는 가리키는 원소의 value를 참조하지만 역방향 반복자는 가리키는 다음 원소의 value를 참조한다*/ 
 			reference operator*(void) const { iterator_type temp = _current; return (*(--temp)); }
+
 			pointer operator->(void) const { return (&(this->operator*())); }
+
 			reverse_iterator operator+(difference_type n) const { return (reverse_iterator(_current - n)); }
+
 			reverse_iterator& operator++(void) { --_current; return (*this); }
+
 			reverse_iterator operator++(int) { reverse_iterator temp(*this); ++(*this); return (temp); } // 윗줄에서 만들어놓은 ++이 호출되어 연산되므로 ++ 해준다!
+
 			reverse_iterator operator-(difference_type n) const { return (reverse_iterator(_current + n)); }
+
 			reverse_iterator& operator--(void) { ++_current; return (*this); }
+
 			reverse_iterator operator--(int) { reverse_iterator temp(*this); --(*this); return(temp); }
+
 			reverse_iterator& operator+=(difference_type n) { _current -= n; return (*this); }
+
 			reverse_iterator& operator-=(difference_type n) { _current += n; return (*this); }
+
 			reference operator[](difference_type n) const { return (*this + n); }
-			
 	};
 
 
