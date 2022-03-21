@@ -48,27 +48,24 @@ namespace ft
 	template <typename T>
 	struct iterator_traits<T*>
 	{
-		typedef typename random_access_iterator_tag		iterator_category;
-		typedef typename T								value_type;
-		typedef typename std::ptrdiff_t					difference_type;
-		typedef typename T*								pointer;
-		typedef typename T&								reference;
+		typedef random_access_iterator_tag			iterator_category;
+		typedef T									value_type;
+		typedef std::ptrdiff_t						difference_type;
+		typedef T*									pointer;
+		typedef T&									reference;
 	};
 
 	template <typename T>
 	struct iterator_traits<const T*>
 	{
-		typedef typename random_access_iterator_tag		iterator_category;
-		typedef typename T								value_type;
-		typedef typename std::ptrdiff_t					difference_type;
-		typedef typename T*								pointer;
-		typedef typename T&								reference;
+		typedef random_access_iterator_tag			iterator_category;
+		typedef T									value_type;
+		typedef std::ptrdiff_t						difference_type;
+		typedef T*									pointer;
+		typedef T&									reference;
 	};
 
-
-	/*####################*/
-	/*# Reverse Iterator #*/
-	/*####################*/
+	/* Reverse Iterator */
 
 	template <typename Iterator>
 	class reverse_iterator : public iterator<typename iterator_traits<Iterator>::iterator_category,

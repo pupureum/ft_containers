@@ -1,7 +1,8 @@
-#ifndef RANDOMACCESS_ITERATOR_HPP
-# define RANDOMACCESS_ITERATOR_HPP
+#ifndef RANDOM_ACCESS_ITERATOR_HPP
+# define RANDOM_ACCESS_ITERATOR_HPP
 
 # include "iterator.hpp"
+# include "nullptr.hpp"
 
 namespace ft
 {
@@ -30,7 +31,7 @@ namespace ft
 		random_access_iterator& operator=(const random_access_iterator& vec_rhs)
 		{
 			if (this != &vec_rhs)
-				this->_current = vec_rhs._current;
+				this->_i = vec_rhs._i;
 			return (*this);
 		}
 
@@ -45,13 +46,13 @@ namespace ft
 	
 		pointer operator->() const { return &(this->operator*()); }
 	
-		random_access_iterator operator+(difference_type n) const { return (random_access_iterator(this->_i + n); }
+		random_access_iterator operator+(difference_type n) const { return (random_access_iterator(this->_i + n)); }
 	
 		random_access_iterator& operator++(void) { ++_i; return (*this); }
 	
 		random_access_iterator operator++(int) { random_access_iterator temp(*this); ++_i; return (temp); }
 	
-		random_access_iterator operator-(difference_type n) { return (random_access_iterator(this->_i - n); }
+		random_access_iterator operator-(difference_type n) { return (random_access_iterator(this->_i - n)); }
 	
 		random_access_iterator& operator--(void) { --_i; return (*this); }
 	
