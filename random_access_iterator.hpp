@@ -35,8 +35,11 @@ namespace ft
 			return (*this);
 		}
 
+		/* Conversion operator */
+		operator random_access_iterator<const value_type> () const { return (random_access_iterator<const value_type>(this->_i));}
+		
 		/* Destrcutor */
-		~random_access_iterator(void) {}
+		virtual ~random_access_iterator(void) {}
 
 		/* Member function */
 		pointer base(void) const { return (_i); }

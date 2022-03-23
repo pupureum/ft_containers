@@ -230,8 +230,8 @@ namespace ft
 			typename ft::enable_if<!is_integral<InputIterator>::value>::type* = ft_nullptr)
 		{
 			this->clear();
-			size_type new_cap = distance(first, last);
-			if (new_cap > this->capacity())
+			difference_type new_cap = last - first;
+			if (static_cast<size_type>(new_cap) > this->capacity())
 			{
 				_alloc.deallocate(_begin, this->capacity());
 				vec_allocate(new_cap);
@@ -272,19 +272,46 @@ namespace ft
 
 		void pop_back()
 		{
-			if (this->_begin() != this->_end)
-			{
-				--_end;
-			}
-			_alloc.destroy(this->_end);
-
+			_alloc.destroy(--_end);
 		}
 
 		iterator insert(iterator position, const value_type& val)
 		{
-			size_type pos = &(*position) - this->_begin;
-			this->insert(position, 1, val);
-			return iterator(this->_begin + pos);
+			pointer pos = this->_begin + (position - this->begin());
+			if (this->_end < this->_end_cap)
+			{
+				for (pointer p = this->_end; p != pos; p--)
+				{
+					_alloc.construct(p, *(p - 1));
+					_alloc.destroy(p - 1);
+				}
+				_alloc.construct(pos, val); _end++;
+			}
+			else
+			{
+				size_type new_cap;
+				if (this->capacity() == 0) { new_cap = 1; }
+				else if (this->capacity() * 2 > this->max_size()) { new_cap = this->max_size(); }
+				else { new_cap = this->capacity() * 2; }
+
+				pointer new_begin, new_end;
+				new_begin = new_end = _alloc.allocate(new_cap);
+				for (pointer p = this->_begin; p != pos; p++, new_end++) {
+					_alloc.construct(new_end, *p);
+				}
+				_alloc.construct(new_end, val); new_end++;
+				for (pointer p = pos; p != this->_end; p++, new_end++) {
+					_alloc.construct(new_end, *p);
+				}
+
+				this->clear();
+				_alloc.deallocate(this->_begin, this->capacity());
+				
+				this->_begin = new_begin;
+				this->_end = new_end;
+				this->_end_cap = new_begin + new_cap;
+			}
+			return iterator(pos);
  		 }
 
 		void insert (iterator position, size_type n, const value_type& val)
@@ -398,7 +425,7 @@ namespace ft
 				}
 			}
 		}
-		
+
 		iterator erase (iterator position) {
 			pointer pos = &(*position);
 			for (pointer p = pos; p + 1 != this->_end; p++)
