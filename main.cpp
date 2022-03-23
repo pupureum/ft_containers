@@ -240,47 +240,72 @@ void	at(void)
 void	front(void)
 {
 	std::cout << BG_CYAN << "********************front***********************" << COLOR_NOMAL << std::endl;
-	std::vector<int>	std_v(3);
-	ft::vector<int>		ft_v(3);
+	std::vector<int>	std_vector(3);
+	ft::vector<int>		ft_vector(3);
 
-	for (size_t i = 0; i < ft_v.size(); i++)
+	for (size_t i = 0; i < ft_vector.size(); i++)
 	{
-		std_v[i] = (i + 1) * 3;
-		ft_v[i] = (i + 1) * 3;
+		std_vector[i] = (i + 1);
+		ft_vector[i] = (i + 1);
 	}
-	
-	print(ft_v, std_v);
-	std::cout << std::setw(27) << "front" << std::endl;
-	std::cout << std::setw(10) << ft_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(10) << std_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(5) << (ft_v.front() == std_v.front() ? "OK" : "KO") << std::endl;
 
-	ft_v.erase(ft_v.begin());
-	std_v.erase(std_v.begin());
+	print(ft_vector, std_vector);
+	std::cout << std::setw(12) << "front : ";
+	std::cout << std::setw(3) << ft_vector.front();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(12) << "front : ";
+	std::cout << std::setw(3) << std_vector.front();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(10) << (ft_vector.front() == std_vector.front() ? COLOR_GREEN "OK" : COLOR_RED "KO") << std::endl;
 
-	print(ft_v, std_v);
-	std::cout << std::setw(27) << "front" << std::endl;
-	std::cout << std::setw(10) << ft_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(10) << std_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(5) << (ft_v.front() == std_v.front() ? "OK" : "KO") << std::endl;
+	ft_vector.erase(ft_vector.begin());
+	std_vector.erase(std_vector.begin());
 
-	ft_v.insert(ft_v.begin(), 100);
-	std_v.insert(std_v.begin(), 100);
-
-	print(ft_v, std_v);
-	std::cout << std::setw(27) << "front" << std::endl;
-	std::cout << std::setw(10) << ft_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(10) << std_v.front();
-	std::cout << std::setw(10) << " | ";
-	std::cout << std::setw(5) << (ft_v.front() == std_v.front() ? "OK" : "KO") << std::endl;
+	print(ft_vector, std_vector);
+	std::cout << std::setw(12) << "front : ";
+	std::cout << std::setw(3) << ft_vector.front();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(12) << "front : ";
+	std::cout << std::setw(3) << std_vector.front();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(10) << (ft_vector.front() == std_vector.front() ? COLOR_GREEN "OK" : COLOR_RED "KO") << std::endl;
 }
 
 void	back(void)
+{
+	std::cout << BG_CYAN << "********************back***********************" << COLOR_NOMAL << std::endl;
+	std::vector<int>	std_vector(3);
+	ft::vector<int>		ft_vector(3);
+
+	for (size_t i = 0; i < ft_vector.size(); i++)
+	{
+		std_vector[i] = i + 1;
+		ft_vector[i] = i + 1;
+	}
+	
+	print(ft_vector, std_vector);
+	std::cout << std::setw(12) << "back : ";
+	std::cout << std::setw(3) << ft_vector.back();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(12) << "back : ";
+	std::cout << std::setw(3) << std_vector.back();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(10) << (ft_vector.back() == std_vector.back() ? COLOR_GREEN "OK" : COLOR_RED "KO") << std::endl;
+
+	ft_vector.push_back(100);
+	std_vector.push_back(100);
+
+	print(ft_vector, std_vector);
+	std::cout << std::setw(12) << "back : ";
+	std::cout << std::setw(3) << ft_vector.back();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(12) << "back : ";
+	std::cout << std::setw(3) << std_vector.back();
+	std::cout << std::setw(10) << COLOR_YELLOW " | " << COLOR_NOMAL;
+	std::cout << std::setw(10) << (ft_vector.back() == std_vector.back() ? COLOR_GREEN "OK" : COLOR_RED "KO") << std::endl;
+}
+
+void	assign(void)
 {
 
 }
@@ -289,77 +314,71 @@ void	back(void)
 void insert(void)
 {
 	std::cout << BG_CYAN << "********************insert***********************" << COLOR_NOMAL << std::endl;
-	std::vector<int> std_v(3);
-	ft::vector<int> ft_v(3);
+	std::vector<int> std_vector(3);
+	ft::vector<int> ft_vector(3);
 
-	std_v.clear();
-	ft_v.clear();
+	std_vector.clear();
+	ft_vector.clear();
 	for (size_t i = 1; i < 4; i++)
 	{
-		std_v.insert(std_v.begin(), i * 3);
-		ft_v.insert(ft_v.begin(), i * 3);
-		print(ft_v, std_v);
+		std_vector.insert(std_vector.begin(), i);
+		ft_vector.insert(ft_vector.begin(), i);
+		print(ft_vector, std_vector);
 	}
 
-	std_v.insert(std_v.end(), 10);
-	ft_v.insert(ft_v.end(), 10);
-	print(ft_v, std_v);
+	std_vector.insert(std_vector.end(), 10);
+	ft_vector.insert(ft_vector.end(), 10);
+	print(ft_vector, std_vector);
 
-	std_v.insert(std_v.begin() + 2, 5);
-	ft_v.insert(ft_v.begin() + 2, 5);
-	print(ft_v, std_v);
+	std_vector.insert(std_vector.begin() + 2, 5);
+	ft_vector.insert(ft_vector.begin() + 2, 5);
+	print(ft_vector, std_vector);
 
-	std_v.insert(std_v.begin(), 2, 0);
-	ft_v.insert(ft_v.begin(), 2, 0);
-	print(ft_v, std_v);
+	std_vector.insert(std_vector.begin(), 2, 0);
+	ft_vector.insert(ft_vector.begin(), 2, 0);
+	print(ft_vector, std_vector);
 
-	std_v.insert(std_v.end(), 3, 20);
-	ft_v.insert(ft_v.end(), 3, 20);
-	print(ft_v, std_v);
+	std_vector.insert(std_vector.end(), 3, 20);
+	ft_vector.insert(ft_vector.end(), 3, 20);
+	print(ft_vector, std_vector);
 
-	std_v.insert(std_v.begin() + 5, 15, 20);
-	ft_v.insert(ft_v.begin() + 5, 15, 20);
-	print(ft_v, std_v);
+	std_vector.	insert(std_vector.begin() + 5, 5, 30);
+	ft_vector.insert(ft_vector.begin() + 5, 5, 30);
+	print(ft_vector, std_vector);
 
-	std_v.clear();
-	ft_v.clear();
+	std_vector.clear();
+	ft_vector.clear();
 
 	for (int i = 1; i < 4; i++)
 	{
-		std_v.push_back(i * 3);
-		ft_v.push_back(i * 3);
+		std_vector.push_back(i);
+		ft_vector.push_back(i);
 	}
 
-	print(ft_v, std_v);
-	std::vector<int> std_v2;
-	ft::vector<int> ft_v2;
+	print(ft_vector, std_vector);
+	std::vector<int> std_vector2;
+	ft::vector<int> ft_vector2;
 
-	std_v2.insert(std_v2.begin(), std_v.begin(), std_v.end());
-	ft_v2.insert(ft_v2.begin(), ft_v.begin(), ft_v.end());
-	print(ft_v2, std_v2);
-
-	std_v.erase(std_v.begin());
-	ft_v.erase(ft_v.begin());
-
-	std_v2.insert(std_v2.end(), std_v.begin(), std_v.end());
-	ft_v2.insert(ft_v2.end(), ft_v.begin(), ft_v.end());
-	print(ft_v2, std_v2);
+	std_vector2.insert(std_vector2.begin(), std_vector.begin(), std_vector.end());
+	ft_vector2.insert(ft_vector2.begin(), ft_vector.begin(), ft_vector.end());
+	print(ft_vector2, std_vector2);
 }
 
 int main(void)
 {
-	construct();
-	resize();
-	max_size();
-	empty();
-	reserve();
-	at();
-	//front();
-	back();
-	// assign();
+	// construct();
+	// resize();
+	// max_size();
+	// empty();
+	// reserve();
+	// at();
+	// front();
+	// back();
+
+	assign();
 	// push_back();
 	// pop_back();
-	insert();
+//	insert();
 	// erase();
 	// swap();
 	// clear();
@@ -367,7 +386,7 @@ int main(void)
 	// iterOper();
 	// reverseIter();
 
-	// system("leaks test");
+	//  system("leaks test");
 	return (0);
 }
 
