@@ -47,7 +47,7 @@ namespace ft
 						_alloc.construct(this->_end, val);
 				}
 			}
-		//?????????
+
 		template <typename InputIterator>
 		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 			typename ft::enable_if<!is_integral<InputIterator>::value>::type* = ft_nullptr)
@@ -245,7 +245,7 @@ namespace ft
 			if (n > this->capacity())
 			{
 				_alloc.deallocate(_begin, this->capacity());
-				vallocate_(n);
+				vec_allocate(n);
 			}
 			for (size_type i = 0; i < n; i++, _end++)
 				_alloc.construct(this->_end, val);
@@ -486,8 +486,6 @@ namespace ft
 				_alloc.destroy(this->_end);
 			}
 		}
-
-		
 	};
 
 	/* Relational Operators */
