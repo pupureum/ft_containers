@@ -129,7 +129,7 @@ namespace ft
 
 			reverse_iterator& operator-=(difference_type n) { _current += n; return (*this); }
 
-			reference operator[](difference_type n) const { return (*this + n); }
+			reference operator[](difference_type n) const { return (*(*this + n)); }
 	};
 
 

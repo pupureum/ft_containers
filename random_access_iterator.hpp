@@ -21,9 +21,9 @@ namespace ft
 	
 	public:
 		/* Constructor */
-		random_access_iterator() : _i(NULL) {}
-		//?
-		explicit random_access_iterator(pointer ptr = ft_nullptr) : _i(ptr) {}
+		random_access_iterator() : _i(ft_nullptr) {}
+
+		random_access_iterator(pointer ptr) : _i(ptr) {}
 	
 		random_access_iterator(const random_access_iterator<T>& vec_rhs) : _i(vec_rhs._i) {}
 	

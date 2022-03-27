@@ -1,7 +1,11 @@
 #include <iostream>
 #include <iomanip>
 #include "vector.hpp"
+#include "stack.hpp"
+#include "map.hpp"
 #include <vector>
+#include <stack>
+#include <map>
 #include <string>
 #define COLOR_RED "\x1b[31m"
 #define COLOR_GREEN "\x1b[32m"
@@ -673,111 +677,311 @@ void iterOper(void)
 	iterOperTest(std_vector.begin(), ft_vector.begin());
 }
 
-void reverseIterTest(std::vector<int>::reverse_iterator stdIter, ft::vector<int>::reverse_iterator ftIter)
+// void reverseIterTest(std::vector<int>::reverse_iterator stdIter, ft::vector<int>::reverse_iterator ftIter)
+// {
+// 	std::vector<std::string> std;
+// 	std::vector<std::string> ft;
+// 	std::vector<std::string> operStr;
+// 	std::string str;
+
+// 	str.assign("0");
+
+// 	operStr.push_back("i++");
+// 	str[0] = *(stdIter++) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(ftIter++) + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("++i");
+// 	str[0] = *(++stdIter) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(++ftIter) + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("i--");
+// 	str[0] = *(stdIter--) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(ftIter--) + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("--i");
+// 	str[0] = *(--stdIter) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(--ftIter) + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("it + n");
+// 	str[0] = *(stdIter + 1) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(ftIter + 1) + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("n + it");
+// 	str[0] = *(1 + stdIter) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(1 + ftIter) + '0';
+// 	ft.push_back(str);
+
+// 	stdIter++;
+// 	ftIter++;
+// 	operStr.push_back("it - n");
+// 	str[0] = *(stdIter - 1) + '0';
+// 	std.push_back(str);
+// 	str[0] = *(ftIter - 1) + '0';
+// 	ft.push_back(str);
+
+// 	std::vector<int>::reverse_iterator stdTemp;
+// 	ft::vector<int>::reverse_iterator ftTemp;
+
+// 	stdTemp = stdIter + 1;
+// 	ftTemp = ftIter + 1;
+
+// 	operStr.push_back("it - it");
+// 	str[0] = stdTemp - stdIter + '0';
+// 	std.push_back(str);
+// 	str[0] = ftTemp - ftIter + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("it += it");
+// 	stdIter += 1;
+// 	str[0] = *stdIter + '0';
+// 	std.push_back(str);
+// 	ftIter += 1;
+// 	str[0] = *ftIter + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("it[n]");
+// 	str[0] = stdIter[0] + '0';
+// 	std.push_back(str);
+// 	str[0] = ftIter[0] + '0';
+// 	ft.push_back(str);
+
+// 	operStr.push_back("base");
+// 	str[0] = *stdIter.base() + '0';
+// 	std.push_back(str);
+// 	str[0] = *ftIter.base() + '0';
+// 	ft.push_back(str);
+
+// 	operatePrint(operStr, ft, std);
+// }
+
+// void reverseIter(void)
+// {
+// 	std::cout << BG_CYAN << "********************reverseIter***********************" << COLOR_NOMAL << std::endl;
+// 	std::vector<int> std_vector;
+// 	ft::vector<int> ft_vector;
+
+// 	for (int i = 1; i < 4; i++)
+// 	{
+// 		std_vector.push_back(i * 3);
+// 		ft_vector.push_back(i * 3);
+// 	}
+
+// 	reverseIterTest(std_vector.rbegin(), ft_vector.rbegin());
+// }
+
+void stack_print(ft::stack<int> ft_s, std::stack<int> std_s)
+{
+	std::cout << COLOR_YELLOW;
+	std::cout << "--------ft--------|--------std--------|---diff---" << std::endl;
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << ft_s.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << std_s.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_s.size() == std_s.size() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+
+	while (!ft_s.empty())
+	{
+		std::cout << std::setw(10) << ft_s.top();
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << std_s.top();
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << (ft_s.top() == std_s.top() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+		ft_s.pop();
+		std_s.pop();
+	}
+}
+
+void stack_print(ft::stack<int, ft::vector<int> > ft_s, std::stack<int, std::vector<int> > std_s)
+{
+	std::cout << COLOR_YELLOW;
+	std::cout << "--------ft--------|--------std--------|---diff---" << std::endl;
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << ft_s.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << std_s.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_s.size() == std_s.size() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+
+	while (!ft_s.empty())
+	{
+		std::cout << std::setw(10) << ft_s.top();
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << std_s.top();
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << (ft_s.top() == std_s.top() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+		ft_s.pop();
+		std_s.pop();
+	}
+}
+
+
+void	stack_construct(void)
+{
+	std::cout << BG_CYAN << "********************constructor***********************" << COLOR_NOMAL << std::endl;
+	std::stack<int> std_s;
+	ft::stack<int> ft_s;
+
+	for (size_t i = 1; i < 6; i++)
+	{
+		ft_s.push(i);
+		std_s.push(i);
+	}
+
+	stack_print(ft_s, std_s);
+
+	std::vector<int> std_v;
+	ft::vector<int> ft_v;
+
+	for (size_t i = 1; i < 5; i++)
+	{
+		std_v.push_back(i * 2);
+		ft_v.push_back(i * 2);
+	}
+  
+	std::stack<int, std::vector<int> > std_s2(std_v);
+	ft::stack<int, ft::vector<int> > ft_s2(ft_v);
+	stack_print(ft_s2, std_s2);
+}
+
+void stack_operTest(std::stack<int> &std_s, std::stack<int> &std_s2, ft::stack<int> &ft_s, ft::stack<int> &ft_s2)
 {
 	std::vector<std::string> std;
 	std::vector<std::string> ft;
 	std::vector<std::string> operStr;
-	std::string str;
 
-	str.assign("0");
+	operStr.push_back("==");
+	std.push_back((std_s == std_s2 ? "true" : "false"));
+	ft.push_back((ft_s == ft_s2 ? "true" : "false"));
 
-	operStr.push_back("i++");
-	str[0] = *(stdIter++) + '0';
-	std.push_back(str);
-	str[0] = *(ftIter++) + '0';
-	ft.push_back(str);
+	operStr.push_back("!=");
+	std.push_back((std_s != std_s2 ? "true" : "false"));
+	ft.push_back((ft_s != ft_s2 ? "true" : "false"));
 
-	operStr.push_back("++i");
-	str[0] = *(++stdIter) + '0';
-	std.push_back(str);
-	str[0] = *(++ftIter) + '0';
-	ft.push_back(str);
+	operStr.push_back("<");
+	std.push_back((std_s < std_s2 ? "true" : "false"));
+	ft.push_back((ft_s < ft_s2 ? "true" : "false"));
 
-	operStr.push_back("i--");
-	str[0] = *(stdIter--) + '0';
-	std.push_back(str);
-	str[0] = *(ftIter--) + '0';
-	ft.push_back(str);
+	operStr.push_back("<=");
+	std.push_back((std_s <= std_s2 ? "true" : "false"));
+	ft.push_back((ft_s <= ft_s2 ? "true" : "false"));
 
-	operStr.push_back("--i");
-	str[0] = *(--stdIter) + '0';
-	std.push_back(str);
-	str[0] = *(--ftIter) + '0';
-	ft.push_back(str);
+	operStr.push_back(">");
+	std.push_back((std_s > std_s2 ? "true" : "false"));
+	ft.push_back((ft_s > ft_s2 ? "true" : "false"));
 
-	operStr.push_back("it + n");
-	str[0] = *(stdIter + 1) + '0';
-	std.push_back(str);
-	str[0] = *(ftIter + 1) + '0';
-	ft.push_back(str);
-
-	operStr.push_back("n + it");
-	str[0] = *(1 + stdIter) + '0';
-	std.push_back(str);
-	str[0] = *(1 + ftIter) + '0';
-	ft.push_back(str);
-
-	stdIter++;
-	ftIter++;
-	operStr.push_back("it - n");
-	str[0] = *(stdIter - 1) + '0';
-	std.push_back(str);
-	str[0] = *(ftIter - 1) + '0';
-	ft.push_back(str);
-
-	std::vector<int>::reverse_iterator stdTemp;
-	ft::vector<int>::reverse_iterator ftTemp;
-
-	stdTemp = stdIter + 1;
-	ftTemp = ftIter + 1;
-
-	operStr.push_back("it - it");
-	str[0] = stdTemp - stdIter + '0';
-	std.push_back(str);
-	str[0] = ftTemp - ftIter + '0';
-	ft.push_back(str);
-
-	operStr.push_back("it += it");
-	stdIter += 1;
-	str[0] = *stdIter + '0';
-	std.push_back(str);
-	ftIter += 1;
-	str[0] = *ftIter + '0';
-	ft.push_back(str);
-
-	operStr.push_back("it[n]");
-	str[0] = stdIter[0] + '0';
-	std.push_back(str);
-	str[0] = ftIter[0] + '0';
-	ft.push_back(str);
-
-	operStr.push_back("base");
-	str[0] = *stdIter.base() + '0';
-	std.push_back(str);
-	str[0] = *ftIter.base() + '0';
-	ft.push_back(str);
+	operStr.push_back(">=");
+	std.push_back((std_s >= std_s2 ? "true" : "false"));
+	ft.push_back((ft_s >= ft_s2 ? "true" : "false"));
 
 	operatePrint(operStr, ft, std);
 }
 
-void reverseIter(void)
+void stack_oper(void)
 {
-	std::cout << BG_CYAN << "********************reverseIter***********************" << COLOR_NOMAL << std::endl;
-	std::vector<int> std_vector;
-	ft::vector<int> ft_vector;
+	std::cout << BG_CYAN << "********************oper***********************" << COLOR_NOMAL << std::endl;
+	std::stack<int> std_v;
+	std::stack<int> std_v2;
+	ft::stack<int> ft_v;
+	ft::stack<int> ft_v2;
 
 	for (int i = 1; i < 4; i++)
 	{
-		std_vector.push_back(i * 3);
-		ft_vector.push_back(i * 3);
+		std_v.push(i * 3);
+		std_v2.push(i * 3);
+		ft_v.push(i * 3);
+		ft_v2.push(i * 3);
 	}
 
-	reverseIterTest(std_vector.rbegin(), ft_vector.rbegin());
+	stack_print(ft_v, std_v);
+	stack_print(ft_v2, std_v2);
+	stack_operTest(std_v, std_v2, ft_v, ft_v2);
+
+	std_v2.push(2);
+	ft_v2.push(2);
+	std_v.push(1);
+	ft_v.push(1);
+	stack_print(ft_v, std_v);
+	stack_print(ft_v2, std_v2);
+	stack_operTest(std_v, std_v2, ft_v, ft_v2);
 }
+
+void	stack_empty_pop(void)
+{
+	std::cout << BG_CYAN << "********************empty***********************" << COLOR_NOMAL << std::endl;
+	std::stack<int> std_s;
+	ft::stack<int> ft_s;
+
+	for (int i = 1; i < 6; i++)
+	{
+		std_s.push(i);
+		ft_s.push(i);
+	}
+	stack_print(ft_s, std_s);
+	while(!ft_s.empty())
+	{
+		ft_s.pop();
+	}
+	while(!std_s.empty())
+	{
+		std_s.pop();
+	}
+	stack_print(ft_s, std_s);
+}
+
+void	stack_top(void)
+{
+	std::cout << BG_CYAN << "********************top***********************" << COLOR_NOMAL << std::endl;
+	std::stack<int> std_s;
+	ft::stack<int> ft_s;
+
+	std_s.push(10);
+	ft_s.push(10);
+	std_s.push(20);
+	ft_s.push(20);
+	stack_print(ft_s, std_s);
+	ft_s.top() -= 5;
+	std_s.top() -= 5;
+	stack_print(ft_s, std_s);
+}
+
+// void	map_construct(void)
+// {
+
+// }
 
 int main(void)
 {
+	std::cout << COLOR_RED "VECTOR" << COLOR_NOMAL << std::endl;
 	// construct();
 	// resize();
 	// max_size();
@@ -794,8 +998,33 @@ int main(void)
 	// clear();
 	// oper();
 	// iterOper();
-	reverseIter();
+	// reverseIter();
 
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << COLOR_RED "STACK" << COLOR_NOMAL << std::endl;
+	// stack_construct();
+	// stack_oper();
+	// stack_empty_pop();
+	// stack_top();
+
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << COLOR_RED "MAP" << COLOR_NOMAL << std::endl;
+	// map_construct();
+	// map_empty();
+	// map_insert();
+	// map_erase();
+	// map_swap();
+	// map_clear();
+	// find();
+	// count();
+	// bound();
+	// equal_range();
+	// mapOperator();
+	// iterOper();
 	//  system("leaks test");
 	// while(1){};
 	return (0);
