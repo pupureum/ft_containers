@@ -164,7 +164,7 @@ namespace ft
 	//매개변수 보면 difference_type 먼저 받고 이터레이터 들어온다. 그러면 기존의 멤버함수 오버로딩+가 다시 호출되어 연산.
 	reverse_iterator<Iterator> operator+(
 			typename reverse_iterator<Iterator>::difference_type n, const reverse_iterator<Iterator>& rev_iter)
-	{ return (reverse_iterator<Iterator>(rev_iter.base() + n)); }
+	{ return (reverse_iterator<Iterator>(rev_iter + n)); }
 
 	template <typename Iterator>
 	typename reverse_iterator<Iterator>::difference_type operator-(

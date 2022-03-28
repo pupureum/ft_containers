@@ -7,6 +7,7 @@
 #include <stack>
 #include <map>
 #include <string>
+#include <list>
 #define COLOR_RED "\x1b[31m"
 #define COLOR_GREEN "\x1b[32m"
 #define COLOR_NOMAL "\033[0m"
@@ -677,108 +678,108 @@ void iterOper(void)
 	iterOperTest(std_vector.begin(), ft_vector.begin());
 }
 
-// void reverseIterTest(std::vector<int>::reverse_iterator stdIter, ft::vector<int>::reverse_iterator ftIter)
-// {
-// 	std::vector<std::string> std;
-// 	std::vector<std::string> ft;
-// 	std::vector<std::string> operStr;
-// 	std::string str;
+void reverseIterTest(std::vector<int>::reverse_iterator stdIter, ft::vector<int>::reverse_iterator ftIter)
+{
+	std::vector<std::string> std;
+	std::vector<std::string> ft;
+	std::vector<std::string> operStr;
+	std::string str;
 
-// 	str.assign("0");
+	str.assign("0");
 
-// 	operStr.push_back("i++");
-// 	str[0] = *(stdIter++) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(ftIter++) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("i++");
+	str[0] = *(stdIter++) + '0';
+	std.push_back(str);
+	str[0] = *(ftIter++) + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("++i");
-// 	str[0] = *(++stdIter) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(++ftIter) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("++i");
+	str[0] = *(++stdIter) + '0';
+	std.push_back(str);
+	str[0] = *(++ftIter) + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("i--");
-// 	str[0] = *(stdIter--) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(ftIter--) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("i--");
+	str[0] = *(stdIter--) + '0';
+	std.push_back(str);
+	str[0] = *(ftIter--) + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("--i");
-// 	str[0] = *(--stdIter) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(--ftIter) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("--i");
+	str[0] = *(--stdIter) + '0';
+	std.push_back(str);
+	str[0] = *(--ftIter) + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("it + n");
-// 	str[0] = *(stdIter + 1) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(ftIter + 1) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("it + n");
+	str[0] = *(stdIter + 1) + '0';
+	std.push_back(str);
+	str[0] = *(ftIter + 1) + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("n + it");
-// 	str[0] = *(1 + stdIter) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(1 + ftIter) + '0';
-// 	ft.push_back(str);
+	operStr.push_back("n + it");
+	str[0] = *(1 + stdIter) + '0';
+	std.push_back(str);
+	str[0] = *(1 + ftIter) + '0';
+	ft.push_back(str);
 
-// 	stdIter++;
-// 	ftIter++;
-// 	operStr.push_back("it - n");
-// 	str[0] = *(stdIter - 1) + '0';
-// 	std.push_back(str);
-// 	str[0] = *(ftIter - 1) + '0';
-// 	ft.push_back(str);
+	stdIter++;
+	ftIter++;
+	operStr.push_back("it - n");
+	str[0] = *(stdIter - 1) + '0';
+	std.push_back(str);
+	str[0] = *(ftIter - 1) + '0';
+	ft.push_back(str);
 
-// 	std::vector<int>::reverse_iterator stdTemp;
-// 	ft::vector<int>::reverse_iterator ftTemp;
+	std::vector<int>::reverse_iterator stdTemp;
+	ft::vector<int>::reverse_iterator ftTemp;
 
-// 	stdTemp = stdIter + 1;
-// 	ftTemp = ftIter + 1;
+	stdTemp = stdIter + 1;
+	ftTemp = ftIter + 1;
 
-// 	operStr.push_back("it - it");
-// 	str[0] = stdTemp - stdIter + '0';
-// 	std.push_back(str);
-// 	str[0] = ftTemp - ftIter + '0';
-// 	ft.push_back(str);
+	operStr.push_back("it - it");
+	str[0] = stdTemp - stdIter + '0';
+	std.push_back(str);
+	str[0] = ftTemp - ftIter + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("it += it");
-// 	stdIter += 1;
-// 	str[0] = *stdIter + '0';
-// 	std.push_back(str);
-// 	ftIter += 1;
-// 	str[0] = *ftIter + '0';
-// 	ft.push_back(str);
+	operStr.push_back("it += it");
+	stdIter += 1;
+	str[0] = *stdIter + '0';
+	std.push_back(str);
+	ftIter += 1;
+	str[0] = *ftIter + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("it[n]");
-// 	str[0] = stdIter[0] + '0';
-// 	std.push_back(str);
-// 	str[0] = ftIter[0] + '0';
-// 	ft.push_back(str);
+	operStr.push_back("it[n]");
+	str[0] = stdIter[0] + '0';
+	std.push_back(str);
+	str[0] = ftIter[0] + '0';
+	ft.push_back(str);
 
-// 	operStr.push_back("base");
-// 	str[0] = *stdIter.base() + '0';
-// 	std.push_back(str);
-// 	str[0] = *ftIter.base() + '0';
-// 	ft.push_back(str);
+	operStr.push_back("base");
+	str[0] = *stdIter.base() + '0';
+	std.push_back(str);
+	str[0] = *ftIter.base() + '0';
+	ft.push_back(str);
 
-// 	operatePrint(operStr, ft, std);
-// }
+	operatePrint(operStr, ft, std);
+}
 
-// void reverseIter(void)
-// {
-// 	std::cout << BG_CYAN << "********************reverseIter***********************" << COLOR_NOMAL << std::endl;
-// 	std::vector<int> std_vector;
-// 	ft::vector<int> ft_vector;
+void reverseIter(void)
+{
+	std::cout << BG_CYAN << "********************reverseIter***********************" << COLOR_NOMAL << std::endl;
+	std::vector<int> std_vector;
+	ft::vector<int> ft_vector;
 
-// 	for (int i = 1; i < 4; i++)
-// 	{
-// 		std_vector.push_back(i * 3);
-// 		ft_vector.push_back(i * 3);
-// 	}
+	for (int i = 1; i < 4; i++)
+	{
+		std_vector.push_back(i * 3);
+		ft_vector.push_back(i * 3);
+	}
 
-// 	reverseIterTest(std_vector.rbegin(), ft_vector.rbegin());
-// }
+	reverseIterTest(std_vector.rbegin(), ft_vector.rbegin());
+}
 
 void stack_print(ft::stack<int> ft_s, std::stack<int> std_s)
 {
@@ -974,10 +975,448 @@ void	stack_top(void)
 	stack_print(ft_s, std_s);
 }
 
-// void	map_construct(void)
-// {
+void printCount(int count)
+{
+	std::cout << std::setw(24) <<  "[" << count << "]" << std::endl;
+}
 
-// }
+
+void map_print(ft::map<int, std::string> &ft_m, std::map<int, std::string> &std_m)
+{
+	ft::map<int, std::string>::const_iterator it = ft_m.begin();
+	ft::map<int, std::string>::const_iterator ite = ft_m.end();
+	std::map<int, std::string>::const_iterator std_it = std_m.begin();
+
+	std::cout << COLOR_YELLOW;
+	std::cout << "--------ft--------|--------std--------|---diff---" << std::endl;
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << ft_m.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << std_m.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_m.size() == std_m.size() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+
+	for (; it != ite; it++)
+	{
+		//-------------- key ---------
+//		std::cout << std::setw(10) << it->first;
+//		std::cout << COLOR_YELLOW;
+//		std::cout << std::setw(10) << " | ";
+//		std::cout << COLOR_NOMAL;
+//		std::cout << std::setw(10) << std_it->first;
+//		std::cout << COLOR_YELLOW;
+//		std::cout << std::setw(10) << " | ";
+//		std::cout << COLOR_NOMAL;
+//		std::cout << std::setw(10) << (it->first == std_it->first ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+		//------------- value ----------
+		std::cout << std::setw(10) << it->second;
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << std_it->second;
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << (it->second == std_it->second ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+		std_it++;
+
+	}
+}
+
+void	map_construct(void)
+{
+	std::cout << BG_CYAN << "********************construct***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+
+	std_lst.push_back(std::make_pair<int, std::string>(2, "world"));
+	std_lst.push_back(std::make_pair<int, std::string>(1, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "hi"));
+	std_lst.push_back(std::make_pair<int, std::string>(10, "my"));
+	std_lst.push_back(std::make_pair<int, std::string>(23, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(20, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "name"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "world"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(1, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "hi"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(10, "my"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(23, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(20, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "name"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+
+	// ------------------- [0] ----------------------------------
+	printCount(0);
+	std::map<int, std::string> std_m(std_lst.begin(), std_lst.end());
+	ft::map<int, std::string> ft_m(ft_lst.begin(), ft_lst.end());
+	map_print(ft_m, std_m);
+
+	// ------------------- [1] ----------------------------------
+	std::map<int, std::string> std_m2(std_m);
+	ft::map<int, std::string> ft_m2(ft_m);
+
+	printCount(1);
+	map_print(ft_m2, std_m2);
+
+	// ------------------- [2] ----------------------------------
+	std_m2 = std_m;
+	ft_m2 = ft_m;
+
+	printCount(2);
+	map_print(ft_m2, std_m2);
+}
+
+void printKey(ft::map<int, std::string> &ft_m, std::map<int, std::string> &std_m)
+{
+	ft::map<int, std::string>::const_iterator it = ft_m.begin();
+	ft::map<int, std::string>::const_iterator ite = ft_m.end();
+	std::map<int, std::string>::const_iterator std_it = std_m.begin();
+
+	std::cout << COLOR_YELLOW;
+	std::cout << "--------ft--------|--------std--------|---diff---" << std::endl;
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << ft_m.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(12) << "size : ";
+	std::cout << std::setw(3) << std_m.size();
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_m.size() == std_m.size() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+
+	for (; it != ite; it++)
+	{
+		//-------------- key ---------
+		std::cout << std::setw(10) << it->first;
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << std_it->first;
+		std::cout << COLOR_YELLOW;
+		std::cout << std::setw(10) << " | ";
+		std::cout << COLOR_NOMAL;
+		std::cout << std::setw(10) << (it->first == std_it->first ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+		std_it++;
+	}
+}
+
+static void map_printIter(std::map<int, std::string>::iterator &std_it, ft::map<int, std::string>::iterator &ft_it, std::map<int, std::string> &std_m, ft::map<int, std::string> &ft_m)
+{
+	std::string std_ret;
+	std::string ft_ret;
+
+	std_ret = (std_it != std_m.end() ? std_it->second : "not find");
+	ft_ret = (ft_it != ft_m.end() ? ft_it->second : "not find");
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << ft_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << std_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(std_ret == ft_ret ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+}
+
+void bound(void)
+{
+	std::cout << BG_CYAN << "********************bound***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+
+	std_lst.push_back(std::make_pair<int, std::string>(2, "world"));
+	std_lst.push_back(std::make_pair<int, std::string>(0, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "hi"));
+	std_lst.push_back(std::make_pair<int, std::string>(10, "my"));
+	std_lst.push_back(std::make_pair<int, std::string>(23, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(20, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "name"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "world"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(0, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "hi"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(10, "my"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(23, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(20, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "name"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+
+	std::map<int, std::string> std_m;
+	ft::map<int, std::string> ft_m;
+	std::map<int, std::string>::iterator std_it;
+	ft::map<int, std::string>::iterator ft_it;
+	ft_m.insert(ft_lst.begin(), ft_lst.end());
+	std_m.insert(std_lst.begin(), std_lst.end());
+
+	// -------------[0]-------------
+	printCount(0);
+	map_print(ft_m, std_m);
+	
+	// -------------[1]-------------
+	// 제일 적은 값보다 더 작은 값
+	printCount(1);
+	std_it = std_m.lower_bound(-5);
+	ft_it = ft_m.lower_bound(-5);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[2]-------------
+	// 제일 작은 값
+	printCount(0);
+	std_it = std_m.lower_bound(2);
+	ft_it = ft_m.lower_bound(2);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[3]-------------
+	// 중간 값
+	printCount(3);
+	std_it = std_m.lower_bound(10);
+	ft_it = ft_m.lower_bound(10);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[4]-------------
+	// 최대 값
+	printCount(4);
+	std_it = std_m.lower_bound(23);
+	ft_it = ft_m.lower_bound(23);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[5]-------------
+	// 최대 이상
+	printCount(5);
+	std_it = std_m.lower_bound(100);
+	ft_it = ft_m.lower_bound(100);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+
+	// -------------[6]-------------
+	// 제일 적은 값보다 더 작은 값
+	printCount(6);
+	std_it = std_m.upper_bound(-5);
+	ft_it = ft_m.upper_bound(-5);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[7]-------------
+	// 제일 작은 값
+	printCount(7);
+	std_it = std_m.upper_bound(0);
+	ft_it = ft_m.upper_bound(0);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[8]-------------
+	// 중간 값
+	printCount(8);
+	std_it = std_m.upper_bound(10);
+	ft_it = ft_m.upper_bound(10);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[9]-------------
+	// 최대 값
+	printCount(9);
+	std_it = std_m.upper_bound(23);
+	ft_it = ft_m.upper_bound(23);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[10]-------------
+	// 최대 값 초과
+	printCount(10);
+	std_it = std_m.upper_bound(100);
+	ft_it = ft_m.upper_bound(100);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+}
+
+void map_clear()
+{
+	std::cout << BG_CYAN << "********************clear***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+
+	std_lst.push_back(std::make_pair<int, std::string>(2, "world"));
+	std_lst.push_back(std::make_pair<int, std::string>(1, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "hi"));
+	std_lst.push_back(std::make_pair<int, std::string>(10, "my"));
+	std_lst.push_back(std::make_pair<int, std::string>(23, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(20, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "name"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "world"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(1, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "hi"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(10, "my"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(23, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(20, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "name"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+
+	std::map<int, std::string> std_m(std_lst.begin(), std_lst.end());
+	ft::map<int, std::string> ft_m(ft_lst.begin(), ft_lst.end());
+	// --------------[0]-------------
+	printCount(0);
+	map_print(ft_m, std_m);
+	// --------------[1]-------------
+	printCount(1);
+	std_m.clear();
+	ft_m.clear();
+	map_print(ft_m, std_m);
+}
+
+void find()
+{
+	std::cout << BG_CYAN << "********************find***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+
+	std_lst.push_back(std::make_pair<int, std::string>(2, "world"));
+	std_lst.push_back(std::make_pair<int, std::string>(0, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "hi"));
+	std_lst.push_back(std::make_pair<int, std::string>(10, "my"));
+	std_lst.push_back(std::make_pair<int, std::string>(23, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(20, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "name"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "world"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(0, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "hi"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(10, "my"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(23, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(20, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "name"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+
+	ft::map<int, std::string> ft_m(ft_lst.begin(), ft_lst.end());
+	std::map<int, std::string> std_m(std_lst.begin(), std_lst.end());
+
+	ft::map<int, std::string>::iterator ft_it;
+	std::map<int, std::string>::iterator std_it;
+	// -------------[0]--------------
+	printCount(0);
+	map_print(ft_m, std_m);
+	// -------------[1]--------------
+	// find hi
+	printCount(1);
+	ft_it = ft_m.find(5);
+	std_it = std_m.find(5);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
+	// -------------[2]--------------
+	// 없는 값 find
+	printCount(2);
+	ft_it = ft_m.find(100);
+	std_it = std_m.find(100);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+}
+
+void retPrint(int std_ret, int ft_ret)
+{
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << (ft_ret ? "TRUE" : "FALSE");
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << (std_ret ? "TRUE" : "FALSE");
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_ret == std_ret ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+}
+
+void map_erase()
+{
+	std::cout << BG_CYAN << "********************erase***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+
+	std_lst.push_back(std::make_pair<int, std::string>(2, "world"));
+	std_lst.push_back(std::make_pair<int, std::string>(0, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "hi"));
+	std_lst.push_back(std::make_pair<int, std::string>(10, "my"));
+	std_lst.push_back(std::make_pair<int, std::string>(23, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(20, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "name"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "world"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(0, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "hi"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(10, "my"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(23, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(20, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "name"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+
+	std::map<int, std::string> std_m(std_lst.begin(), std_lst.end());
+	ft::map<int, std::string> ft_m(ft_lst.begin(), ft_lst.end());
+
+	// ----------------[0]---------------------
+	printCount(0);
+	map_print(ft_m, std_m);
+
+	// ----------------[1]---------------------
+	// hello 삭제
+	printCount(1);
+	std_m.erase(std_m.begin());
+	ft_m.erase(ft_m.begin());
+	map_print(ft_m, std_m);
+
+	// ----------------[2]---------------------
+	// tester 삭제
+	printCount(2);
+	std_m.erase(--std_m.end());
+	ft_m.erase(--ft_m.end());
+	map_print(ft_m, std_m);
+
+	// ----------------[3]---------------------
+	// name 삭제
+	printCount(3);
+	std_m.erase(++(++(++std_m.begin())));
+	ft_m.erase(++(++(++ft_m.begin())));
+	map_print(ft_m, std_m);
+
+	// ----------------[4]---------------------
+	// my 삭제
+	size_t std_ret;
+	size_t ft_ret;
+	printCount(4);
+	std_ret = std_m.erase(10);
+	ft_ret = ft_m.erase(10);
+	map_print(ft_m, std_m);
+	retPrint(std_ret, ft_ret);
+
+	// ----------------[5]---------------------
+	// 없는 key 삭제
+	printCount(5);
+	std_ret = std_m.erase(100);
+	ft_ret = ft_m.erase(100);
+	map_print(ft_m, std_m);
+	retPrint(std_ret, ft_ret);
+
+	// ----------------[6]---------------------
+	// 없는 key 삭제
+	printCount(6);
+	std_ret = std_m.erase(100);
+	ft_ret = ft_m.erase(100);
+	map_print(ft_m, std_m);
+	retPrint(std_ret, ft_ret);
+
+	// ----------------[7]---------------------
+	// 전체 삭제
+	printCount(7);
+	std_m.erase(std_m.begin(), std_m.end());
+	ft_m.erase(ft_m.begin(), ft_m.end());
+	map_print(ft_m, std_m);
+}
 
 int main(void)
 {
@@ -998,7 +1437,7 @@ int main(void)
 	// clear();
 	// oper();
 	// iterOper();
-	// reverseIter();
+	reverseIter();
 
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -1016,10 +1455,10 @@ int main(void)
 	// map_construct();
 	// map_empty();
 	// map_insert();
-	// map_erase();
+	map_erase();
 	// map_swap();
-	// map_clear();
-	// find();
+	map_clear();
+	//find();
 	// count();
 	// bound();
 	// equal_range();

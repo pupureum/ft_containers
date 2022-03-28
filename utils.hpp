@@ -4,7 +4,6 @@
 namespace ft
 {
 	/* equal */
-
 	template <typename InputIterator1, typename InputIterator2>
 	bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
 	{
@@ -29,7 +28,7 @@ namespace ft
 	}
 
 
-	/*   lexicographical_compare   */
+	/* lexicographical_compare */
 	template <typename InputIterator1, typename InputIterator2>
 	bool lexicographical_compare (InputIterator1 first1, InputIterator1 last1,
 								InputIterator2 first2, InputIterator2 last2)
@@ -117,6 +116,19 @@ namespace ft
 	pair<T1,T2> make_pair(T1 first, T2 second) {
 		return ( pair<T1,T2>(first, second) );
 	}
+
+	template <typename Pair>
+	struct Select1st: public std::unary_function<Pair, typename Pair::first_type>
+	{
+	public:
+		typename Pair::first_type operator()(Pair& x) const { return x.first; }
+		const typename Pair::first_type operator()(const Pair& x) const { return x.first; }
+	};
+
+	template <typename L, typename R>
+	struct is_same : public false_type {};
+	template <typename T>
+	struct is_same<T, T> : public true_type {};
 
 }
 

@@ -55,7 +55,7 @@ namespace ft
 	
 		random_access_iterator operator++(int) { random_access_iterator temp(*this); ++_i; return (temp); }
 	
-		random_access_iterator operator-(difference_type n) { return (random_access_iterator(this->_i - n)); }
+		random_access_iterator operator-(difference_type n) const { return (random_access_iterator(this->_i - n)); }
 	
 		random_access_iterator& operator--(void) { --_i; return (*this); }
 	
