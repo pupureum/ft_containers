@@ -85,6 +85,7 @@ namespace ft
 				x = x->left;
 			return (x);
 		}
+
 		void left_rotate(node_pointer x)
 		{
 			node_pointer y = x->right;
@@ -101,6 +102,7 @@ namespace ft
 			y->left = x;
 			x->parent = y;
 		}
+
 		void right_rotate(node_pointer x)
 		{
 			node_pointer y = x->left;
@@ -117,6 +119,7 @@ namespace ft
 			y->right = x;
 			x->parent = y;
 		}
+
 		pair<iterator, bool> insert(const value_type& x)
 		{
 			node_pointer newnode = _nalloc.allocate(1);
@@ -127,6 +130,7 @@ namespace ft
 			_alloc.construct(newnode->value, value_type(x));
 			return (insert(newnode));
 		}
+
 		pair<iterator, bool> insert(node_pointer z)
 		{
 			node_pointer y = _nil;
@@ -161,6 +165,7 @@ namespace ft
 				insert_fixup(z);
 			return (ft::make_pair(iterator(_nil, _root, z), true));
 		}
+
 		void insert_fixup(node_pointer z)
 		{
 			node_pointer u;
@@ -215,6 +220,7 @@ namespace ft
 			}
 			_root->color = black;
 		}
+
 		void transplant(node_pointer u, node_pointer v)
 		{
 			if (u->parent == _nil)
@@ -225,6 +231,7 @@ namespace ft
 				u->parent->right = v;
 			v->parent = u->parent;
 		}
+
 		void remove(node_pointer z)
 		{
 			if (z == _nil)
@@ -272,6 +279,7 @@ namespace ft
 			_nil->left = _nil->right = _nil->parent = _nil;
 			_nil->color = black;
 		}
+
 		void remove_fixup(node_pointer x)
 		{
 			node_pointer w;
@@ -350,6 +358,7 @@ namespace ft
 				cur = cur->left;
 			return (iterator(_nil, _root, cur));
 		}
+
 		const_iterator begin(void) const
 		{
 			node_pointer cur = _root;
@@ -357,14 +366,11 @@ namespace ft
 				cur = cur->left;
 			return (const_iterator(_nil, _root, cur));
 		}
-		iterator end(void)
-		{
-			return (iterator(_nil, _root, _nil));
-		}
-		const_iterator end(void) const
-		{
-			return (const_iterator(_nil, _root, _nil));
-		}
+
+		iterator end(void) { return (iterator(_nil, _root, _nil)); }
+
+		const_iterator end(void) const { return (const_iterator(_nil, _root, _nil)); }
+
 		reverse_iterator rbegin(void)
 		{
 			node_pointer cur = _root;
@@ -372,6 +378,7 @@ namespace ft
 				cur = cur->right;
 			return (reverse_iterator(_nil, _root, cur));
 		}
+
 		const_reverse_iterator rbegin(void) const
 		{
 			node_pointer cur = _root;
@@ -379,6 +386,7 @@ namespace ft
 				cur = cur->right;
 			return (const_reverse_iterator(_nil, _root, cur));
 		}
+
 		reverse_iterator rend(void) { return (reverse_iterator(_nil, _root, _nil)); }
 		
 		const_reverse_iterator rend() const { return (const_reverse_iterator(_nil, _root, _nil)); }
