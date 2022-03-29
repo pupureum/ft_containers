@@ -1,7 +1,7 @@
 #ifndef RB_TREE_ITERATOR_HPP
 # define RB_TREE_ITERATOR_HPP
 
-#include "iterator.hpp"
+# include "iterator.hpp"
 
 namespace ft
 {
@@ -10,17 +10,13 @@ namespace ft
 	template <typename Val>
 	struct node
 	{
-		Val* 			value; //->pair only map
+		Val* 			value; //pair only for map
 		struct node* 	parent;
 		struct node* 	left;
 		struct node* 	right;
 		rb_color 		color;
 		node(): value(0), parent(0), left(0), right(0) {}
 	};
-
-	// template <typename T>
-	// class rb_tree_const_iterator;	
-	//????????????????
 
 	template <typename T>
 	class rb_tree_iterator
@@ -51,9 +47,9 @@ namespace ft
 
 		node_pointer cur(void) const { return (_cur); }
 
-		node_pointer nil() const { return (_nil); }
+		node_pointer nil(void) const { return (_nil); }
 
-		node_pointer root() const { return _root; }
+		node_pointer root(void) const { return _root; }
 	
 		node_pointer rb_tree_iterator_increment(node_pointer x)
 		{
@@ -113,15 +109,15 @@ namespace ft
 			}
 			return x;
 		}
-		pointer operator->() const
+		pointer operator->(void) const
 		{
 			return _cur->value;
 		}
-		reference operator*() const
+		reference operator*(void) const
 		{
 			return *_cur->value;
 		}
-		iterator& operator++()
+		iterator& operator++(void)
 		{
 			_cur = rb_tree_iterator_increment(_cur);
 			return *this;
@@ -132,7 +128,7 @@ namespace ft
 			_cur = rb_tree_iterator_increment(_cur);
 			return tmp;
 		}
-		iterator& operator--()
+		iterator& operator--(void)
 		{
 			_cur = rb_tree_iterator_decrement(_cur);
 			return *this;

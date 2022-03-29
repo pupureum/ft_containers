@@ -1,7 +1,6 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 
-// #include "tree_iter.hpp"
 # include "utils.hpp"
 # include "rb_tree.hpp"
 
@@ -21,7 +20,7 @@ namespace ft
 			Compare comp;
 		public:
 			value_compare(Compare c): comp(c){}
-			bool operator(void)(const value_type& x, const value_type& y) const { return comp(x.first, y.first); }
+			bool operator()(const value_type& x, const value_type& y) const { return (comp(x.first, y.first)); }
 		};
 		typedef Alloc																				allocator_type;
 		typedef typename allocator_type::reference													reference;
@@ -178,7 +177,7 @@ namespace ft
 				break;
 		return (*i < *j);
 	}
-	
+
 	template <typename Key, typename T, typename Comp, typename Alloc>
 	bool operator<=(const map<Key, T, Comp, Alloc>& l, const map<Key, T, Comp, Alloc>& r)
 	{ return !(r < l); }

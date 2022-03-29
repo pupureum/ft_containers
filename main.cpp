@@ -1071,42 +1071,6 @@ void	map_construct(void)
 	map_print(ft_m2, std_m2);
 }
 
-// void printKey(ft::map<int, std::string> &ft_m, std::map<int, std::string> &std_m)
-// {
-// 	ft::map<int, std::string>::const_iterator it = ft_m.begin();
-// 	ft::map<int, std::string>::const_iterator ite = ft_m.end();
-// 	std::map<int, std::string>::const_iterator std_it = std_m.begin();
-
-// 	std::cout << COLOR_YELLOW;
-// 	std::cout << "--------ft--------|--------std--------|---diff---" << std::endl;
-// 	std::cout << COLOR_NOMAL;
-// 	std::cout << std::setw(12) << "size : ";
-// 	std::cout << std::setw(3) << ft_m.size();
-// 	std::cout << COLOR_YELLOW;
-// 	std::cout << std::setw(5) << " | ";
-// 	std::cout << COLOR_NOMAL;
-// 	std::cout << std::setw(12) << "size : ";
-// 	std::cout << std::setw(3) << std_m.size();
-// 	std::cout << COLOR_YELLOW;
-// 	std::cout << std::setw(5) << " | " << std::setw(10) <<
-// 		(ft_m.size() == std_m.size() ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
-
-// 	for (; it != ite; it++)
-// 	{
-// 		//-------------- key ---------
-// 		std::cout << std::setw(10) << it->first;
-// 		std::cout << COLOR_YELLOW;
-// 		std::cout << std::setw(10) << " | ";
-// 		std::cout << COLOR_NOMAL;
-// 		std::cout << std::setw(10) << std_it->first;
-// 		std::cout << COLOR_YELLOW;
-// 		std::cout << std::setw(10) << " | ";
-// 		std::cout << COLOR_NOMAL;
-// 		std::cout << std::setw(10) << (it->first == std_it->first ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
-// 		std_it++;
-// 	}
-// }
-
 static void map_printIter(std::map<int, std::string>::iterator &std_it, ft::map<int, std::string>::iterator &ft_it, std::map<int, std::string> &std_m, ft::map<int, std::string> &ft_m)
 {
 	std::string std_ret;
@@ -1503,126 +1467,361 @@ void	bound(void)
 	map_print(ft_m, std_m);
 	
 	// -------------[1]-------------
-	// 제일 적은 값보다 더 작은 값
+	std::cout << std::setw(38) << "---------lower----------" << std::endl;
 	printCount(1);
 	std_it = std_m.lower_bound(-5);
 	ft_it = ft_m.lower_bound(-5);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
 	// -------------[2]-------------
-	// 제일 작은 값
 	printCount(0);
 	std_it = std_m.lower_bound(2);
 	ft_it = ft_m.lower_bound(2);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
 	// -------------[3]-------------
-	// 중간 값
 	printCount(3);
-	std_it = std_m.lower_bound(10);
-	ft_it = ft_m.lower_bound(10);
+	std_it = std_m.lower_bound(22);
+	ft_it = ft_m.lower_bound(22);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
 	// -------------[4]-------------
-	// 최대 값
 	printCount(4);
-	std_it = std_m.lower_bound(23);
-	ft_it = ft_m.lower_bound(23);
-	map_printIter(std_it, ft_it, std_m, ft_m);
-
-	// -------------[5]-------------
-	// 최대 이상
-	printCount(5);
 	std_it = std_m.lower_bound(100);
 	ft_it = ft_m.lower_bound(100);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
 
-	// -------------[6]-------------
-	// 제일 적은 값보다 더 작은 값
-	printCount(6);
+	// -------------[5]-------------
+	std::cout << std::setw(38) << "---------upper----------" << std::endl;
+	printCount(5);
 	std_it = std_m.upper_bound(-5);
 	ft_it = ft_m.upper_bound(-5);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
+	// -------------[6]-------------
+	printCount(6);
+	std_it = std_m.upper_bound(2);
+	ft_it = ft_m.upper_bound(2);
+	map_printIter(std_it, ft_it, std_m, ft_m);
+
 	// -------------[7]-------------
-	// 제일 작은 값
 	printCount(7);
-	std_it = std_m.upper_bound(0);
-	ft_it = ft_m.upper_bound(0);
+	std_it = std_m.upper_bound(22);
+	ft_it = ft_m.upper_bound(22);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 
 	// -------------[8]-------------
-	// 중간 값
 	printCount(8);
-	std_it = std_m.upper_bound(10);
-	ft_it = ft_m.upper_bound(10);
-	map_printIter(std_it, ft_it, std_m, ft_m);
-
-	// -------------[9]-------------
-	// 최대 값
-	printCount(9);
-	std_it = std_m.upper_bound(23);
-	ft_it = ft_m.upper_bound(23);
-	map_printIter(std_it, ft_it, std_m, ft_m);
-
-	// -------------[10]-------------
-	// 최대 값 초과
-	printCount(10);
-	std_it = std_m.upper_bound(100);
-	ft_it = ft_m.upper_bound(100);
+	std_it = std_m.upper_bound(30);
+	ft_it = ft_m.upper_bound(30);
 	map_printIter(std_it, ft_it, std_m, ft_m);
 }
 
+static void	map_printIter(std::pair<std::map<int, std::string>::iterator, std::map<int, std::string>::iterator> &std_pr, ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator> &ft_pr,
+		std::map<int, std::string> &std_m, ft::map<int, std::string> &ft_m)
+{
+	std::string std_ret;
+	std::string ft_ret;
 
+	std_ret = (std_pr.first != std_m.end() ? std_pr.first->second : "not find");
+	ft_ret = (ft_pr.first != ft_m.end() ? ft_pr.first->second : "not find");
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << ft_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(8) << "ret : ";
+	std::cout << std::setw(7) << std_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_ret == std_ret ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+
+
+	std_ret = (std_pr.second != std_m.end() ? std_pr.second->second : "not find");
+	ft_ret = (ft_pr.second != ft_m.end() ? ft_pr.second->second : "not find");
+	std::cout << std::setw(8) << "ret2 : ";
+	std::cout << std::setw(7) << ft_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | ";
+	std::cout << COLOR_NOMAL;
+	std::cout << std::setw(8) << "ret2 : ";
+	std::cout << std::setw(7) << std_ret;
+	std::cout << COLOR_YELLOW;
+	std::cout << std::setw(5) << " | " << std::setw(10) <<
+		(ft_ret == std_ret ? COLOR_GREEN"OK" : COLOR_RED"KO") << COLOR_NOMAL << std::endl;
+}
+
+void	equal_range(void)
+{
+	std::cout << BG_CYAN << "********************equal_range***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+	std::map<int, std::string> std_m;
+	ft::map<int, std::string> ft_m;
+	std::pair<std::map<int, std::string>::iterator, std::map<int, std::string>::iterator> std_pr;
+	ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator> ft_pr;
+
+	std_lst.push_back(std::make_pair<int, std::string>(1, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(30, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "this"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(2, "hi"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(1, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(30, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "this"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "hi"));
+
+	ft_m.insert(ft_lst.begin(), ft_lst.end());
+	std_m.insert(std_lst.begin(), std_lst.end());
+
+	// -----------[0]------------
+	printCount(0);
+	map_print(ft_m, std_m);
+	
+	// -----------[1]------------
+	printCount(1);
+	std_pr = std_m.equal_range(-1);
+	ft_pr = ft_m.equal_range(-1);
+	map_printIter(std_pr, ft_pr, std_m, ft_m);
+	
+	// -----------[2]------------
+	printCount(2);
+	std_pr = std_m.equal_range(2);
+	ft_pr = ft_m.equal_range(2);
+	map_printIter(std_pr, ft_pr, std_m, ft_m);
+	
+	// -----------[3]------------
+	printCount(3);
+	std_pr = std_m.equal_range(15);
+	ft_pr = ft_m.equal_range(15);
+	map_printIter(std_pr, ft_pr, std_m, ft_m);
+	
+	// -----------[4]------------
+	printCount(4);
+	std_pr = std_m.equal_range(30);
+	ft_pr = ft_m.equal_range(30);
+	map_printIter(std_pr, ft_pr, std_m, ft_m);
+	
+	// -----------[5]------------
+	printCount(5);
+	std_pr = std_m.equal_range(100);
+	ft_pr = ft_m.equal_range(100);
+	map_printIter(std_pr, ft_pr, std_m, ft_m);
+}
+
+void operatorTest(std::map<int, std::string> std_m, std::map<int, std::string> std_m2, ft::map<int, std::string> ft_m, ft::map<int, std::string> ft_m2)
+{
+	std::vector<std::string> std;
+	std::vector<std::string> ft;
+	std::vector<std::string> operStr;
+
+	operStr.push_back("==");
+	std.push_back((std_m == std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m == ft_m2 ? "TRUE" : "FALSE"));
+
+	operStr.push_back("!=");
+	std.push_back((std_m != std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m != ft_m2 ? "TRUE" : "FALSE"));
+
+	operStr.push_back("<");
+	std.push_back((std_m < std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m < ft_m2 ? "TRUE" : "FALSE"));
+
+	operStr.push_back("<=");
+	std.push_back((std_m <= std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m <= ft_m2 ? "TRUE" : "FALSE"));
+
+	operStr.push_back(">");
+	std.push_back((std_m > std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m > ft_m2 ? "TRUE" : "FALSE"));
+
+	operStr.push_back(">=");
+	std.push_back((std_m >= std_m2 ? "TRUE" : "FALSE"));
+	ft.push_back((ft_m >= ft_m2 ? "TRUE" : "FALSE"));
+
+	operatePrint(operStr, ft, std);
+}
+
+void mapOperator()
+{
+	std::cout << BG_CYAN << "********************operators***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+	std::map<int, std::string> std_m;
+	ft::map<int, std::string> ft_m;
+	std::map<int, std::string> std_m2;
+	ft::map<int, std::string> ft_m2;
+
+	std_lst.push_back(std::make_pair<int, std::string>(1, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(30, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "this"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(2, "hi"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(1, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(30, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "this"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "hi"));
+
+	ft_m.insert(ft_lst.begin(), ft_lst.end());
+	std_m.insert(std_lst.begin(), std_lst.end());
+	ft_m2.insert(ft_lst.begin(), ft_lst.end());
+	std_m2.insert(std_lst.begin(), std_lst.end());
+
+	// ---------------[0]----------------
+	printCount(0);
+	map_print(ft_m, std_m);
+	map_print(ft_m2, std_m2);
+	operatorTest(std_m, std_m2, ft_m, ft_m2);
+
+	// ---------------[1]----------------
+	printCount(1);
+	std_m.erase(++std_m.begin());
+	ft_m.erase(++ft_m.begin());
+	map_print(ft_m, std_m);
+	map_print(ft_m2, std_m2);
+	operatorTest(std_m, std_m2, ft_m, ft_m2);
+
+	// ---------------[2]----------------
+	printCount(2);
+	std_m2.erase(std_m2.begin());
+	ft_m2.erase(ft_m2.begin());
+	map_print(ft_m, std_m);
+	map_print(ft_m2, std_m2);
+	operatorTest(std_m, std_m2, ft_m, ft_m2);
+}
+
+void operTest(std::map<int, std::string>::iterator std_iter, std::map<int, std::string>::iterator std_iter2, ft::map<int,std::string>::iterator ft_iter, ft::map<int, std::string>::iterator ft_iter2)
+{
+	std::vector<std::string> std;
+	std::vector<std::string> ft;
+	std::vector<std::string> operStr;
+
+	operStr.push_back("==");
+	std.push_back((std_iter == std_iter2 ? "true" : "false"));
+	ft.push_back((ft_iter == ft_iter2 ? "true" : "false"));
+
+	operStr.push_back("!=");
+	std.push_back((std_iter != std_iter2 ? "true" : "false"));
+	ft.push_back((ft_iter != ft_iter2 ? "true" : "false"));
+
+	operatePrint(operStr, ft, std);
+}
+
+void r_operTest(std::map<int, std::string>::reverse_iterator std_iter, std::map<int, std::string>::reverse_iterator std_iter2, ft::map<int,std::string>::reverse_iterator ft_iter, ft::map<int, std::string>::reverse_iterator ft_iter2)
+{
+	std::vector<std::string> std;
+	std::vector<std::string> ft;
+	std::vector<std::string> operStr;
+
+	operStr.push_back("==");
+	std.push_back((std_iter == std_iter2 ? "true" : "false"));
+	ft.push_back((ft_iter == ft_iter2 ? "true" : "false"));
+
+	operStr.push_back("!=");
+	std.push_back((std_iter != std_iter2 ? "true" : "false"));
+	ft.push_back((ft_iter != ft_iter2 ? "true" : "false"));
+
+	operatePrint(operStr, ft, std);
+}
+
+void	map_iterOper(void)
+{
+	std::cout << BG_CYAN << "********************iterator***********************" << COLOR_NOMAL << std::endl;
+	std::list<std::pair<int, std::string> > std_lst;
+	std::list<ft::pair<int, std::string> > ft_lst;
+	std::map<int, std::string> std_m;
+	ft::map<int, std::string> ft_m;
+
+	std_lst.push_back(std::make_pair<int, std::string>(1, "hello"));
+	std_lst.push_back(std::make_pair<int, std::string>(30, "tester"));
+	std_lst.push_back(std::make_pair<int, std::string>(22, "map"));
+	std_lst.push_back(std::make_pair<int, std::string>(5, "this"));
+	std_lst.push_back(std::make_pair<int, std::string>(15, "is"));
+	std_lst.push_back(std::make_pair<int, std::string>(2, "hi"));
+
+	ft_lst.push_back(ft::make_pair<int, std::string>(1, "hello"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(30, "tester"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(22, "map"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(5, "this"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(15, "is"));
+	ft_lst.push_back(ft::make_pair<int, std::string>(2, "hi"));
+
+	ft_m.insert(ft_lst.begin(), ft_lst.end());
+	std_m.insert(std_lst.begin(), std_lst.end());
+
+	// ------------------[0]-----------------
+	printCount(0);
+	operTest(std_m.begin(), std_m.begin(), ft_m.begin(), ft_m.begin());
+
+	// ------------------[1]-----------------
+	printCount(1);
+	operTest(std_m.end(), std_m.end(), ft_m.end(), ft_m.end());
+
+	// ------------------[2]-----------------
+	printCount(2);
+	r_operTest(std_m.rbegin(), std_m.rbegin(), ft_m.rbegin(), ft_m.rbegin());
+
+	// ------------------[3]-----------------
+	printCount(3);
+	r_operTest(std_m.rend(), std_m.rend(), ft_m.rend(), ft_m.rend());
+}
 
 int main(void)
 {
 	std::cout << COLOR_RED "VECTOR" << COLOR_NOMAL << std::endl;
-	// construct();
-	// resize();
-	// max_size();
-	// empty();
-	// reserve();
-	// at();
-	// front();
-	// back();
-	// assign();
-	// push_back_pop_back();
-	// insert();
-	// erase();
-	// swap();
-	// clear();
-	// oper();
-	// iterOper();
+	construct();
+	resize();
+	max_size();
+	empty();
+	reserve();
+	at();
+	front();
+	back();
+	assign();
+	push_back_pop_back();
+	insert();
+	erase();
+	swap();
+	clear();
+	oper();
+	iterOper();
 	reverseIter();
 
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << COLOR_RED "STACK" << COLOR_NOMAL << std::endl;
-	// stack_construct();
-	// stack_oper();
-	// stack_empty_pop();
-	// stack_top();
+	stack_construct();
+	stack_oper();
+	stack_empty_pop();
+	stack_top();
 
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << std::endl;
 	std::cout << COLOR_RED "MAP" << COLOR_NOMAL << std::endl;
-	// map_construct();
-	// map_empty();
-	//map_insert();
-	//map_erase();
-	//map_swap();
-	//map_clear();
-	//find();
-	//count();
+	map_construct();
+	map_empty();
+	map_insert();
+	map_erase();
+	map_swap();
+	map_clear();
+	find();
+	count();
 	bound();
-	// equal_range();
-	// mapOperator();
-	// iterOper();
-	//  system("leaks test");
+	equal_range();
+	mapOperator();
+	map_iterOper();
+	// system("leaks test");
 	// while(1){};
 	return (0);
 }
