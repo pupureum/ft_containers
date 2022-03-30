@@ -62,7 +62,7 @@ namespace ft
 				insert(*itr);
 		}
 
-		~rb_tree(void)
+		virtual ~rb_tree(void)
 		{
 			clear();
 			_alloc.destroy(_nil->value);
@@ -171,7 +171,7 @@ namespace ft
 			node_pointer u;
 			while (z->parent->color == red)
 			{
-				if (z->parent == z->parent->parent->right) //z의 부모노드가 조상노드 기준으로 왼쪽인지 오른쪽인지 알려고..
+				if (z->parent == z->parent->parent->right) //z의 부모노드가 조상노드 기준으로 오른쪽인 경우
 				{
 					u = z->parent->parent->left;
 					if (u->color == red)
@@ -193,17 +193,17 @@ namespace ft
 						left_rotate(z->parent->parent);
 					}
 				}
-				else //조상노드 기준으로 부모가 조상의 왼쪽노드인 경우 u : uncle
+				else //조상노드 기준으로 부모가 조상의 왼쪽노드인 경우 (u : uncle)
 				{
 					u = z->parent->parent->right;
-					if (u->color == red) //recoloring
+					if (u->color == red) //recoloring (case3)
 					{
 						u->color = black;
 						z->parent->color = black;
 						z->parent->parent->color = red;
 						z = z->parent->parent;
 					}
-					else //restructring 
+					else //restructring (case4)
 					{
 						if (z == z->parent->right) 
 						{
@@ -285,31 +285,31 @@ namespace ft
 			node_pointer w;
 			while (x != _root && x->color == black)
 			{
-				if (x == x->parent->left)
+				if (x == x->parent->left) //왼쪽자식인 경우
 				{
 					w = x->parent->right;
-					if (w->color == red)
+					if (w->color == red) //sibling이 red인 경우(case2)
 					{
 						w->color = black;
 						x->parent->color = red;
 						left_rotate(x->parent);
 						w = x->parent->right;
 					}
-					if (w->left->color == black && w->right->color == black)
+					if (w->left->color == black && w->right->color == black) // sibling의 자식이 모두 black(case3)
 					{
 						w->color = red;
 						x = x->parent;
 					}
 					else
 					{
-						if (w->right->color == black)
+						if (w->right->color == black) //sibling의 오른쪽 자식이 black
 						{
 							w->left->color = black;
 							w->color = red;
 							right_rotate(w);
 							w = x->parent->right;
 						}
-						w->color = x->parent->color;
+						w->color = x->parent->color; //sibling의 자식이 모두 red
 						x->parent->color = black;
 						w->right->color = black;
 						left_rotate(x->parent);
@@ -317,30 +317,30 @@ namespace ft
 					}
 				}
 				else
-				{
+				{// 오른쪽 자식인 경우
 					w = x->parent->left;
-					if (w->color == red)
+					if (w->color == red) //sibling이 red인 경우 case2
 					{
 						w->color = black;
 						x->parent->color = red;
 						right_rotate(x->parent);
 						w = x->parent->left;
 					}
-					if (w->right->color == black && w->left->color == black)
+					if (w->right->color == black && w->left->color == black) //case3
 					{
 						w->color = red;
 						x = x->parent;
 					}
 					else
 					{
-						if (w->left->color == black)
+						if (w->left->color == black) //sibling의 오른쪽 자식이 black
 						{
 							w->right->color = black;
 							w->color = red;
 							left_rotate(w);
 							w = x->parent->left;
 						}
-						w->color = x->parent->color;
+						w->color = x->parent->color; //sibling의 자식이 모두 red
 						x->parent->color = black;
 						w->left->color = black;
 						right_rotate(x->parent);
@@ -429,11 +429,21 @@ namespace ft
 
 		void swap(rb_tree& x)
 		{
-			std::swap(_comp, x._comp);
-			std::swap(_alloc, x._alloc);
-			std::swap(_root, x._root);
-			std::swap(_nil, x._nil);
-			std::swap(_size, x._size);
+			Comp compTemp = this->_comp;
+			allocator_type allocTemp = this->_alloc;
+			node_pointer rootTemp = this->_root;
+			node_pointer nilTemp = this->_nil;
+			size_type sizeTemp = this->_size;
+			this->_comp = x._comp;
+			this->_alloc = x._alloc;
+			this->_root = x._root;
+			this->_nil = x._nil;
+			this->_size = x._size;
+			x._comp = compTemp;
+			x._alloc = allocTemp;
+			x._root = rootTemp;
+			x._nil = nilTemp;
+			x._size = sizeTemp;
 		}
 
 		void clear(void)
@@ -443,7 +453,7 @@ namespace ft
 			_root = _nil;
 		}
 
-		Comp key_compare() const
+		Comp key_compare(void) const
 		{
 			return (_comp);
 		}
@@ -452,8 +462,8 @@ namespace ft
 		{
 			node_pointer x = _root;
 			while (x != _nil)
-			{
-				if (KeyOfValue()(*x->value) == k)
+			{//x는 node, node의 value는 pair객체인데 k는 key type이므로 pair에서 key 꺼내와야한다
+				if (KeyOfValue()(*x->value) == k) 
 					break;
 				else if (!_comp(KeyOfValue()(*x->value), k))
 					x = x->left;

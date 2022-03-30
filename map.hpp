@@ -62,7 +62,7 @@ namespace ft
 			_container = x._container;
 			_comp = x._comp;
 			_alloc = x._alloc;
-			return *this;
+			return (*this);
 		}
 		
 		/* Destructor */
@@ -118,8 +118,10 @@ namespace ft
 		void swap(map& x)
 		{
 			_container.swap(x._container);
-			std::swap(_comp, x._comp);
-			std::swap(_alloc, x._alloc);
+			key_compare keyTemp = this->_comp;
+			allocator_type allocTemp = this->_alloc;
+			x._comp = keyTemp;
+			x._alloc = allocTemp;
 		}
 
 		void clear(void) { _container.clear(); }
@@ -148,7 +150,7 @@ namespace ft
 
 		pair<const_iterator, const_iterator> equal_range(const key_type& k) const { return (_container.equal_range(k)); }
 
-		//allocator
+		/* Allocator */
 		allocator_type get_allocator() const { return (_alloc); }
 	};
 

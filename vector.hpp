@@ -74,7 +74,6 @@ namespace ft
 			}
 		}
 
-
 		/* Destructor */
 		virtual ~vector(void)
 		{

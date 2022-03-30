@@ -43,7 +43,7 @@ namespace ft
 
 		rb_tree_iterator(const iterator& x): _cur(x._cur), _root(x._root), _nil(x._nil) {}
 
-		~rb_tree_iterator(void) {}
+		virtual ~rb_tree_iterator(void) {}
 
 		node_pointer cur(void) const { return (_cur); }
 
@@ -179,7 +179,7 @@ namespace ft
 
 		rb_tree_const_iterator(const iterator& x): _cur(x.cur()), _root(x.root()), _nil(x.nil()) {}
 
-		~rb_tree_const_iterator(void) {}
+		virtual ~rb_tree_const_iterator(void) {}
 
 		node_pointer cur(void) const { return (_cur); }
 
@@ -266,14 +266,9 @@ namespace ft
 			_cur = rb_tree_iterator_decrement(_cur);
 			return (tmp);
 		}
-		friend bool operator==(const const_iterator& lhs, const const_iterator& rhs)
-		{
-			return (lhs._cur == rhs._cur);
-		}
-		friend bool operator!=(const const_iterator& lhs, const const_iterator& rhs)
-		{
-			return (lhs._cur != rhs._cur);
-		}
+		friend bool operator==(const const_iterator& lhs, const const_iterator& rhs) { return (lhs._cur == rhs._cur); }
+
+		friend bool operator!=(const const_iterator& lhs, const const_iterator& rhs) { return (lhs._cur != rhs._cur); }
 	};
 
 	/* rb reverse iterator */
@@ -311,7 +306,7 @@ namespace ft
 
 		rb_tree_reverse_iterator(const const_iterator& x): _cur(x.cur()), _root(x.root()), _nil(x.nil()) { _cur = rb_tree_iterator_decrement(_cur); }
 
-		~rb_tree_reverse_iterator(void) {}
+		virtual ~rb_tree_reverse_iterator(void) {}
 
 		iterator base(void) const { return (iterator(_nil, _root, rb_tree_iterator_increment(_cur))); }
 
@@ -348,6 +343,7 @@ namespace ft
 			}
 			return (x);
 		}
+	
 		node_pointer rb_tree_iterator_decrement(node_pointer x) const
 		{
 			if (x == _nil)
@@ -375,7 +371,8 @@ namespace ft
 			}
 			return (x);
 		}
-		pointer		operator->(void) const { return (_cur->value); }
+	
+		pointer	operator->(void) const { return (_cur->value); }
 
 		reference	operator*(void) const { return (*_cur->value); }
 
@@ -442,7 +439,7 @@ namespace ft
 
 		rb_tree_const_reverse_iterator(const const_iterator& x): _cur(x.cur()), _root(x.root()), _nil(x.nil()) { _cur = rb_tree_iterator_decrement(_cur); }
 
-		~rb_tree_const_reverse_iterator(void) {}
+		virtual ~rb_tree_const_reverse_iterator(void) {}
 
 		const_iterator base(void) const { return (const_iterator(_nil, _root, rb_tree_iterator_increment(_cur))); }
 
@@ -542,15 +539,9 @@ namespace ft
 			return (tmp);
 		}
 
-		friend bool operator==(const const_reverse_iterator& lhs, const const_reverse_iterator& rhs)
-		{
-			return (lhs._cur == rhs._cur);
-		}
+		friend bool operator==(const const_reverse_iterator& lhs, const const_reverse_iterator& rhs) { return (lhs._cur == rhs._cur); }
 	
-		friend bool operator!=(const const_reverse_iterator& lhs, const const_reverse_iterator& rhs)
-		{
-			return (lhs._cur != rhs._cur);
-		}
+		friend bool operator!=(const const_reverse_iterator& lhs, const const_reverse_iterator& rhs) { return (lhs._cur != rhs._cur); }
 	};
 }
 

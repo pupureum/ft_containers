@@ -24,13 +24,13 @@ namespace ft
 		virtual ~stack(void) {}
 
 		/* Member functions */
-		bool empty(void) const { return this->_c.empty(); }
+		bool empty(void) const { return (this->_c.empty()); }
 
-		size_type size(void) const { return this->_c.size(); }
+		size_type size(void) const { return (this->_c.size()); }
 
-		value_type& top(void) { return this->_c.back(); }
+		value_type& top(void) { return (this->_c.back()); }
 
-		const value_type& top(void) const { return this->_c.back(); }
+		const value_type& top(void) const { return (this->_c.back()); }
 
 		void push (const value_type& val) { this->_c.push_back(val); }
 
@@ -44,37 +44,37 @@ namespace ft
 	template <typename T, typename Container>
 	bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return lhs._c == rhs._c;
+		return (lhs._c == rhs._c);
 	}
 
 	template <typename T, typename Container>
 	bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return !(lhs == rhs);
+		return (!(lhs == rhs));
 	}
 
 	template <typename T, typename Container>
 	bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return lhs._c < rhs._c;
+		return (lhs._c < rhs._c);
 	}
 
 	template <typename T, typename Container>
 	bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return !(rhs < lhs);
+		return (!(rhs < lhs));
 	}
 
 	template <typename T, typename Container>
 	bool operator>(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return rhs < lhs;
+		return (rhs < lhs);
 	}
 
 	template <typename T, typename Container>
 	bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs)
 	{
-		return !(lhs < rhs);
+		return (!(lhs < rhs));
 	}
 }
 #endif

@@ -21,7 +21,7 @@ namespace ft
 	
 	public:
 		/* Constructor */
-		random_access_iterator() : _i(ft_nullptr) {}
+		random_access_iterator(void) : _i(ft_nullptr) {}
 
 		random_access_iterator(pointer ptr) : _i(ptr) {}
 	
@@ -45,9 +45,9 @@ namespace ft
 		pointer base(void) const { return (_i); }
 
 		/* Member function Operators */
-		reference operator*() const { return (*_i); }
+		reference operator*(void) const { return (*_i); }
 	
-		pointer operator->() const { return &(this->operator*()); }
+		pointer operator->(void) const { return &(this->operator*()); }
 	
 		random_access_iterator operator+(difference_type n) const { return (random_access_iterator(this->_i + n)); }
 	
